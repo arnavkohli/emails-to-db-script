@@ -64,6 +64,7 @@ class EmailManager:
 			if part.get('Content-Disposition') is None:
 				continue
 			fileName = part.get_filename()
+			print('FILENAME: ', fileName)
 			if bool(fileName):
 				filePath = os.path.join('./attachments/', fileName)
 				if not os.path.isfile(filePath) :
@@ -105,6 +106,7 @@ class EmailManager:
 				email_data['attachment_present'] = 0
 			email_data['email_subject'] = subject
 			email_data['email_from'] = email_from
+			email_data['body'] = 
 			email_data['date'] = date
 			status, message = self.db.insert_data(email_data)
 			if status:
@@ -120,7 +122,11 @@ if __name__ == '__main__':
         password = sys.argv[2]
     except:
         exit("Invalid params.")
-	db = MSSQLDB(conn_string="", database="")
+    server = 'sqlcons.ddns.net' 
+    database = 'Crm3000' 
+    username = 'sa' 
+    password = 'Constru$93' 
+    db = MSSQLDB(conn_string='DRIVER={ODBC Driver 17 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password, database=database)
     em = EmailManager(db=db)
     is_logged_in = em.login(email_id, password)
     if is_logged_in:
