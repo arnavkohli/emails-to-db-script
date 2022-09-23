@@ -1,4 +1,4 @@
 mysql-connector-python==8.0.21
 mysqlclient==2.0.1
-protobuf==3.12.2
+protobuf==3.18.3
 six==1.15.0
